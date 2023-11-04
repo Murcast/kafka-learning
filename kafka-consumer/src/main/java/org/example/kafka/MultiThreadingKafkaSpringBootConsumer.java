@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FixedRateKafkaSpringBootConsumer {
+public class MultiThreadingKafkaSpringBootConsumer {
     public static void main(String[] args) {
-        SpringApplication.run(FixedRateKafkaSpringBootConsumer.class);
+        SpringApplication.run(MultiThreadingKafkaSpringBootConsumer.class);
     }
 }
