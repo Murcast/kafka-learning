@@ -21,6 +21,6 @@ public class MyFixedRateKafkaProducer {
     public void sendMessage() {
         var i = counter.incrementAndGet();
         log.info("i equals " + i);
-        template.send("t-fixedrate", "Current value: " + i);
+        template.send("t-fixedrate-2", "Current value: " + i);
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyFixedRateKafkaConsumer {
 
-    @KafkaListener(topics = "t-fixedrate")
+    @KafkaListener(topics = "t-fixedrate-2")
     public void readMessage(String message) {
         log.info("Consuming: {}", message);
     }
