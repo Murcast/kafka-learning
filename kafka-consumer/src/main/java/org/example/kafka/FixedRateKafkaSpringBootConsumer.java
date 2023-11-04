@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KafkaSpringBootConsumer {
+public class FixedRateKafkaSpringBootConsumer {
     public static void main(String[] args) {
-        SpringApplication.run(KafkaSpringBootConsumer.class);
+        SpringApplication.run(FixedRateKafkaSpringBootConsumer.class);
     }
 }

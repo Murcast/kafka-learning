@@ -1,13 +1,15 @@
 package org.example.kafka.consumer;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
-public class MyKafkaConsumer {
+public class MyFixedRateKafkaConsumer {
 
-    @KafkaListener(topics = "t-hello")
+    @KafkaListener(topics = "t-fixedrate")
     public void readMessage(String message) {
-        System.out.println(message);
+        log.info("Consuming: {}", message);
     }
 }
