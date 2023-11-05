@@ -1,7 +1,7 @@
 package org.example.kafka;
 
 import org.example.kafka.entity.Employee;
-import org.example.kafka.producer.MyJsonKafkaProducer;
+import org.example.kafka.producer.MyJson2KafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class JsonKafkaSpringBootProducer implements CommandLineRunner {
 
     @Autowired
-    private MyJsonKafkaProducer producer;
+    private MyJson2KafkaProducer producer;
 
     public static void main(String[] args) {
         SpringApplication.run(JsonKafkaSpringBootProducer.class);

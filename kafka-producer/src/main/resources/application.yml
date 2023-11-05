@@ -1,3 +1,5 @@
 spring:
   main:
     banner-mode: OFF
+  jackson:
+    date-format: yyyy-MM-dd
