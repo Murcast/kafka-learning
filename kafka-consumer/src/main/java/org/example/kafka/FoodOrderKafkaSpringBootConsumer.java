@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RebalancedKafkaSpringBootConsumer {
+public class FoodOrderKafkaSpringBootConsumer {
     public static void main(String[] args) {
-        SpringApplication.run(RebalancedKafkaSpringBootConsumer.class);
+        SpringApplication.run(FoodOrderKafkaSpringBootConsumer.class);
     }
 }
