@@ -9,13 +9,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-public class CommodityKafkaSpringBootProducer implements CommandLineRunner {
+public class RebalancedKafkaSpringBootProducer implements CommandLineRunner {
 
     @Autowired
     private MyJson2KafkaProducer producer;
 
     public static void main(String[] args) {
-        SpringApplication.run(CommodityKafkaSpringBootProducer.class);
+        SpringApplication.run(RebalancedKafkaSpringBootProducer.class);
     }
 
     @Override

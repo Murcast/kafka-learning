@@ -14,7 +14,7 @@ public class CommodityNotificationKafkaConsumer {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @KafkaListener(topics = "t-commodity", groupId = "cg-notification")
+//    @KafkaListener(topics = "t-commodity", groupId = "cg-notification")
     public void consume(String commodity) throws Exception {
         log.info("Notification Commodity : {}", objectMapper.readValue(commodity, Commodity.class));
     }

@@ -19,7 +19,7 @@ public class CommodityDashboardKafkaConsumer {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @KafkaListener(topics = "t-commodity", groupId = "cg-dashboard")
+//    @KafkaListener(topics = "t-commodity", groupId = "cg-dashboard")
     public void consume(String commodity) throws Exception {
         var result = objectMapper.readValue(commodity, Commodity.class);
         TimeUnit.MILLISECONDS.sleep(ThreadLocalRandom.current().nextInt(500, 2000));

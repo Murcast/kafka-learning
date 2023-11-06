@@ -15,7 +15,7 @@ public class MyJsonKafkaConsumer {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @KafkaListener(topics = "t-employee-2")
+//    @KafkaListener(topics = "t-employee-2")
     public void consume(String employee) throws JsonProcessingException {
         log.info("Employee : {}", objectMapper.readValue(employee, Employee.class));
     }
