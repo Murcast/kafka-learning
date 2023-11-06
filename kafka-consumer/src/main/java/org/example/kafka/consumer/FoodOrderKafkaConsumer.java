@@ -16,7 +16,7 @@ public class FoodOrderKafkaConsumer {
     private ObjectMapper objectMapper;
 
     @SneakyThrows
-    @KafkaListener(topics = "t-food-order", errorHandler = "foodOrderErrorHandler")
+    @KafkaListener(topics = "t-food-order")
     public void listen(String data) {
         var result = objectMapper.readValue(data, FoodOrder.class);
         if (result.getAmount() > 7) {
