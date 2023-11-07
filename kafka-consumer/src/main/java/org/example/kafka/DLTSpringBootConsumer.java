@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RetryKafkaSpringBootConsumer {
+public class DLTSpringBootConsumer {
     public static void main(String[] args) {
-        SpringApplication.run(RetryKafkaSpringBootConsumer.class);
+        SpringApplication.run(DLTSpringBootConsumer.class);
     }
 }
