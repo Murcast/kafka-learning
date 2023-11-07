@@ -5,7 +5,6 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.example.kafka.entity.FoodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -16,7 +15,7 @@ public class FoodOrderKafkaConsumer {
     private ObjectMapper objectMapper;
 
     @SneakyThrows
-    @KafkaListener(topics = "t-food-order")
+//    @KafkaListener(topics = "t-food-order")
     public void listen(String data) {
         var result = objectMapper.readValue(data, FoodOrder.class);
         if (result.getAmount() > 7) {

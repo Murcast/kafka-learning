@@ -15,9 +15,11 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.CommonErrorHandler;
 import org.springframework.kafka.listener.ConsumerAwareListenerErrorHandler;
+import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.kafka.listener.ListenerExecutionFailedException;
 import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.messaging.Message;
+import org.springframework.util.backoff.FixedBackOff;
 
 @Configuration
 public class KafkaConfig {
@@ -50,6 +52,7 @@ public class KafkaConfig {
     public CommonErrorHandler generalErrorHandler() {
         return new CommonErrorHandler() {
             private static final Logger log = LoggerFactory.getLogger("GeneralErrorHandler");
+
             @Override
             public boolean handleOne(Exception thrownException, ConsumerRecord<?, ?> record, Consumer<?, ?> consumer, MessageListenerContainer container) {
                 log.info("General error handler: Message : {}, Error : {}", record.value(), thrownException.getCause().getMessage());
@@ -66,6 +69,16 @@ public class KafkaConfig {
         var factory = new ConcurrentKafkaListenerContainerFactory<>();
         configurer.configure(factory, consumerFactory);
         factory.setCommonErrorHandler(generalErrorHandler);
+        return factory;
+    }
+
+    @Bean(name = "retryContainerFactory")
+    public ConcurrentKafkaListenerContainerFactory<Object, Object> retryContainerFactory(
+            ConcurrentKafkaListenerContainerFactoryConfigurer configurer,
+            ConsumerFactory<Object, Object> consumerFactory) {
+        var factory = new ConcurrentKafkaListenerContainerFactory<>();
+        configurer.configure(factory, consumerFactory);
+        factory.setCommonErrorHandler(new DefaultErrorHandler(new FixedBackOff(1000, 3)));
         return factory;
     }
 }
