@@ -10,19 +10,24 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class DLTKafkaConsumer {
+public class PauseConsumerKafkaConsumer {
 
     @Autowired
     private ObjectMapper objectMapper;
 
     @SneakyThrows
-    @KafkaListener(topics = "t-invoice", containerFactory = "deadContainerFactory", concurrency = "2")
-    public void listen(String message) {
+    @KafkaListener(id = "t-invoice.one", topics = "t-invoice")
+    public void listen1(String message) {
         var invoice = objectMapper.readValue(message, Invoice.class);
 
-        if (invoice.getAmount() < 1) {
-            throw new IllegalArgumentException("invalid invoice amount: " + invoice.getAmount());
-        }
-        log.info("received message : {}", invoice);
+        log.info("From first consumer : received message : {}", invoice);
+    }
+
+    @SneakyThrows
+    @KafkaListener(topics = "t-invoice")
+    public void listen2(String message) {
+        var invoice = objectMapper.readValue(message, Invoice.class);
+
+        log.info("From second consumer : received message : {}", invoice);
     }
 }
