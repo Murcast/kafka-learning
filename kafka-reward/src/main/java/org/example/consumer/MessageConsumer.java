@@ -4,7 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.header.Header;
 import org.example.message.OrderMessage;
+import org.example.message.OrderReplyMessage;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -13,7 +15,8 @@ import org.springframework.util.ObjectUtils;
 public class MessageConsumer {
 
     @KafkaListener(topics = "t-commodity-order")
-    public void listen(ConsumerRecord<String, OrderMessage> consumerRecord) {
+    @SendTo("t-commodity-order-reply")
+    public OrderReplyMessage listen(ConsumerRecord<String, OrderMessage> consumerRecord) {
         var headers = consumerRecord.headers();
         var value = consumerRecord.value();
 
@@ -31,5 +34,7 @@ public class MessageConsumer {
         }
         var bonusAsNumber = Integer.parseInt(bonus);
         log.info("Final price : {}", (1d - (bonusAsNumber / 100d)) * value.getPrice() * value.getQuantity());
+
+        return new OrderReplyMessage(value.getOrderNumber());
     }
 }
