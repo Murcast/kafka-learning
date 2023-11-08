@@ -33,6 +33,6 @@ public class OrderProducer {
     private ProducerRecord<String, OrderMessage> createProducerRecord(OrderMessage message) {
         var bonus = StringUtils.startsWithIgnoreCase(message.getOrderLocation(), "A") ? 25 : 15;
         return new ProducerRecord<>("t-commodity-order", null, message.getOrderNumber(), message,
-                List.of(new RecordHeader("surpriseBonus", Integer.toBinaryString(bonus).getBytes())));
+                List.of(new RecordHeader("surpriseBonus", Integer.toString(bonus).getBytes())));
     }
 }
