@@ -30,4 +30,4 @@ spring:
         spring:
           json:
             trusted:
-              packages: org.example.broker.message
+              packages: org.example.message
